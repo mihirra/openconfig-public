@@ -21,7 +21,13 @@ module openconfig-keychain-types {
     "This module contains general data definitions for use in
     keychain-based authentication.";
 
-  oc-ext:openconfig-version "0.3.1";
+  oc-ext:openconfig-version "0.4.0";
+
+  revision "2025-04-13" {
+    description
+      "Add additional security features.";
+    reference "0.4.0";
+  }
 
   revision "2024-08-27" {
     description
@@ -147,6 +153,16 @@ module openconfig-keychain-types {
         HMAC and HKDF)";
   }
 
+  identity HMAC_SHA_512 {
+    base CRYPTO_TYPE;
+      description
+        "HMAC-SHA-512 keyed hash algorithm constructed from the secure
+        SHA-512 hash function and used as a HMAC.";
+      reference
+        "RFC 6234 - US Secure Hash Algorithms (SHA and SHA-based
+        HMAC and HKDF)";
+  }
+
   identity AES_128_CMAC_96 {
     base CRYPTO_TYPE;
       description
@@ -172,5 +188,12 @@ module openconfig-keychain-types {
         cipher.";
       reference
         "RFC 4493 - The AES-CMAC Algorithm and Its Use with IPsec";
+  }
+
+  identity KEY_PAIR {
+    base CRYPTO_TYPE;
+      description
+        "Used to indicate a key pair. Specific Algorithm is specified 
+        seperately.";
   }
 }

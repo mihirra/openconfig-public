@@ -1,0 +1,7 @@
+- name: openconfig-macsec
+  docs:
+    - yang/macsec/openconfig-ipsec.yang
+    - yang/macsec/openconfig-ipsec-types.yang
+  build:
+    - yang/macsec/openconfig-ipsec.yang
+  run-ci: true
