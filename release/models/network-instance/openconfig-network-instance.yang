@@ -28,6 +28,8 @@ module openconfig-network-instance {
   import openconfig-isis { prefix "oc-isis"; }
   import openconfig-aft { prefix "oc-aft"; }
   import openconfig-pim { prefix "oc-pim"; }
+  import openconfig-msdp { prefix "oc-msdp"; }
+  import openconfig-mld { prefix "oc-mld"; }
   import openconfig-igmp { prefix "oc-igmp"; }
   import openconfig-evpn { prefix "oc-evpn"; }
   import openconfig-pcep { prefix "oc-pcep"; }
@@ -50,7 +52,13 @@ module openconfig-network-instance {
     virtual switch instance (VSI). Mixed Layer 2 and Layer 3
     instances are also supported.";
 
-  oc-ext:openconfig-version "4.6.0";
+  oc-ext:openconfig-version "4.7.0";
+
+  revision "2025-04-13" {
+    description
+      "Add additional security features.";
+    reference "4.7.0";
+  }
 
   revision "2025-03-26" {
     description
@@ -993,6 +1001,28 @@ module openconfig-network-instance {
               description
                 "Configuration and state parameters relating to Protocol
                 Indepdendent Multicast (PIM).";
+            }
+
+            uses oc-msdp:msdp-top {
+              when "./config/identifier = 'oc-pol-types:MSDP'" {
+                description
+                  "Include MSDP configuration when the protocol is of type
+                  MSDP";
+              }
+              description
+                "Configuration and state parameters relating to Multicast
+                Source Discovery Protocol (MSDP).";
+            }
+
+            uses oc-mld:mld-top {
+              when "./config/identifier = 'oc-pol-types:MLD'" {
+                description
+                  "Include MLD configuration when the protocol is of type
+                  MLD";
+              }
+              description
+                "Configuration and state parameters relating to Multicast
+                Listener Discovery (MLD).";
             }
 
             uses oc-igmp:igmp-top {
